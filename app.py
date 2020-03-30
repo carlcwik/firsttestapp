@@ -11,24 +11,20 @@ from dash.dependencies import Input, Output, State
 import dash_core_components as dcc
 import dash_html_components as html
  
- 
+
 def show_app(app,  
-             port=5295, #If the port number is busy, change it here! 
+         #If the port number is busy, change it here! 
              width=700,
              height=350,
              offline=True,
              style=True,
              **dash_flask_kwargs):
-    url = 'http://hugorm.nzcorp.net:%d' % port
-    print('click below')
-    print(url)
-    
+
     if offline:
         app.css.config.serve_locally = False
         app.scripts.config.serve_locally = False
 
     return app.run_server(debug=False,  # needs to be false in Jupyter
-                          port=port,
                           **dash_flask_kwargs)
 #Define colum names
 column_list = ['B','I','N','G','O']
@@ -74,9 +70,6 @@ def update_table():
     df = pd.DataFrame({'B':phrases_list_1,'I':phrases_list_2,'N':phrases_list_3,'G':phrases_list_4,'O':phrases_list_5 })
     data = df.to_dict('records')
     return data
-
-
-# In[4]:
 
 
 #define app and applayout
